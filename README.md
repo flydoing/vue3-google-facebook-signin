@@ -100,3 +100,7 @@ function onSignInErrorGoogle(error) {
 
 </script>
 ```
+
+- 注意1：Facebook的登录，需要在Facebook的后台配置 `JavaScript SDK 允许使用的网域`，官网后台：[https://developers.facebook.com/](https://developers.facebook.com/)
+
+- 注意2：Google的登录，需要在Google的后台控制台 `“Web 应用”的客户端 ID`处 配置 `已获授权的网域，已获授权的javascript来源，已获授权的重定向 URL`，官网后台：[https://console.developers.google.com/](https://console.developers.google.com/)
