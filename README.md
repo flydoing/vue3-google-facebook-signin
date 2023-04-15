@@ -1,35 +1,102 @@
 # vue3-google-facebook-signin
 
-This template should help get you started developing with Vue 3 in Vite.
+[![Build](https://github.com/gjincai/vue3-google-facebook-signin/actions/workflows/build.yaml/badge.svg)](https://github.com/gjincai/vue3-google-facebook-signin/actions/workflows/build.yaml) [![npm](https://img.shields.io/npm/v/vue3-google-facebook-signin)](https://www.npmjs.com/package/vue3-google-facebook-signin) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue3-google-facebook-signin) ![npm](https://img.shields.io/npm/dw/vue3-google-facebook-signin) ![NPM](https://img.shields.io/npm/l/vue3-google-facebook-signin)
 
-## Recommended IDE Setup
+海外第三方登录：facebook登录，google登录
+(传入对应的Facebook应用的appId、谷歌应用的clientId即可)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 安装
 
-## Customize configuration
+- With **NPM**
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install -S vue3-google-facebook-signin
 ```
 
-### Compile and Hot-Reload for Development
+- With **Yarn**
 
-```sh
-npm run dev
+```bash
+yarn add vue3-google-facebook-signin
 ```
 
-### Compile and Minify for Production
+- With **PNPM**
 
-```sh
-npm run build
+```bash
+pnpm add vue3-google-facebook-signin
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## 开始使用
 
-```sh
-npm run lint
+### 使用示例
+
+```html
+<template>
+  <FacebookSignin 
+    :appId="facebookAppId" 
+    @success="onSignInSuccessFacebook"
+    @error="onSignInErrorFacebook"
+  >
+    <span class="btn-primary">Facebook登录自定义样式按钮</span>
+  </FacebookSignin>
+
+  <GoogleSignin
+    :clientId="clientId"
+    @success="onSignInSuccessGoogle"
+    @error="onSignInErrorGoogle"
+  >
+    <span class="btn-primary">Google登录自定义样式按钮</span>
+  </GoogleSignin>
+</template>
+```
+
+```html
+<script setup>
+import { ref } from 'vue'
+import { GoogleSignin, FacebookSignin } from 'vue3-google-facebook-signin'
+/*
+ * facebook登录，官方参考：https://developers.facebook.com/docs/facebook-login/web?locale=zh_CN
+ * Facebook应用的appId
+*/
+const facebookAppId = ref('') // Facebook应用的appId
+function onSignInSuccessFacebook(response) {
+  // 成功回调数据，自行处理：response
+  let facebookIdsStr = ''
+  let facebookIdsList = []
+  // 当存在多个userID时
+  const userID = response.authResponse.userID
+  if (userID) {
+    window.FB.api(`/${userID}/ids_for_business`, function (response) {
+      if (response && !response.error) {
+        facebookIdsList = response.data
+        facebookIdsList.map((item) => {
+          facebookIdsStr = facebookIdsStr + item.id + ','
+        })
+        facebookIdsStr = facebookIdsStr.substring(
+          0,
+          facebookIdsStr.length - 1
+        )
+        console.log(facebookIdsList)
+      }
+    })
+  } else {
+    console.log('登录失败')
+  }
+}
+function onSignInErrorFacebook(error) {
+  console.log(error)
+}
+
+/*
+ * google登录，官方参考：https://developers.google.com/identity/sign-in/web/reference?hl=zh-cn#googleusergetauthresponseincludeauthorizationdata
+ * 谷歌应用的clientId
+*/
+const clientId = ref('') // 谷歌应用的clientId
+function onSignInSuccessGoogle(idToken) {
+  console.log(idToken)
+}
+function onSignInErrorGoogle(error) {
+  console.log(error)
+}
+
+</script>
 ```
