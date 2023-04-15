@@ -1,8 +1,8 @@
 # vue3-google-facebook-signin
 
-[![Build](https://github.com/gjincai/vue3-google-facebook-signin/actions/workflows/build.yaml/badge.svg)](https://github.com/gjincai/vue3-google-facebook-signin/actions/workflows/build.yaml) [![npm](https://img.shields.io/npm/v/vue3-google-facebook-signin)](https://www.npmjs.com/package/vue3-google-facebook-signin) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue3-google-facebook-signin) ![npm](https://img.shields.io/npm/dw/vue3-google-facebook-signin) ![NPM](https://img.shields.io/npm/l/vue3-google-facebook-signin)
+[![npm](https://img.shields.io/npm/v/vue3-google-facebook-signin)](https://www.npmjs.com/package/vue3-google-facebook-signin) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue3-google-facebook-signin) ![npm](https://img.shields.io/npm/dw/vue3-google-facebook-signin) ![NPM](https://img.shields.io/npm/l/vue3-google-facebook-signin)
 
-海外第三方登录：facebook登录，google登录
+海外第三方登录：facebook登录，google登录  
 (传入对应的Facebook应用的appId、谷歌应用的clientId即可)
 
 ## 安装
