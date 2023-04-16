@@ -7,19 +7,19 @@
 
 ## 安装
 
-- With **NPM**
+- **NPM**
 
 ```bash
 npm install -S vue3-google-facebook-signin
 ```
 
-- With **Yarn**
+- **Yarn**
 
 ```bash
 yarn add vue3-google-facebook-signin
 ```
 
-- With **PNPM**
+- **PNPM**
 
 ```bash
 pnpm add vue3-google-facebook-signin
@@ -88,7 +88,7 @@ function onSignInErrorFacebook(error) {
 
 /*
  * google登录，官方参考：https://developers.google.com/identity/sign-in/web/reference?hl=zh-cn#googleusergetauthresponseincludeauthorizationdata
- * 谷歌应用的clientId
+ * 谷歌应用的clientId获取：https://console.developers.google.com/apis/credentials
 */
 const clientId = ref('') // 谷歌应用的clientId
 function onSignInSuccessGoogle(idToken) {
@@ -101,6 +101,9 @@ function onSignInErrorGoogle(error) {
 </script>
 ```
 
-- 注意1：Facebook的登录，需要在Facebook的后台配置 `JavaScript SDK 允许使用的网域`，官网后台：[https://developers.facebook.com/](https://developers.facebook.com/)
+- 注意1：Facebook的登录，需要在Facebook的后台配置 `JavaScript SDK 允许使用的网域`  
+官网后台：[https://developers.facebook.com/](https://developers.facebook.com/)  
+Facebook登录测试，需要部署在支持Https的服务器
 
-- 注意2：Google的登录，需要在Google的后台控制台 `“Web 应用”的客户端 ID`处 配置 `已获授权的网域，已获授权的javascript来源，已获授权的重定向 URL`，官网后台：[https://console.developers.google.com/](https://console.developers.google.com/)
+- 注意2：Google的登录，需要在Google的后台控制台 `“Web 应用”的客户端 ID`处 配置 `已获授权的网域，已获授权的javascript来源，已获授权的重定向 URL`  
+官网后台：[https://console.developers.google.com/](https://console.developers.google.com/)
